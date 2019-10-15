@@ -31,8 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     haskell
-     yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -43,6 +41,7 @@ values."
      go
      nim
      auto-completion
+     yaml
      ;;better-defaults
      emacs-lisp
      git
@@ -60,6 +59,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
+                                      gnu-elpa-keyring-update
                                       ;; does not work without emacs 26
                                       ;; (term-cursor :location (recipe :fetcher github :repo "h0d/term-cursor.el" ))
                                       )
@@ -134,13 +134,15 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(doom-one
+                         atom-one-dark
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Fira Code"
                                :size 13
                                :weight normal
                                :width normal
@@ -317,8 +319,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
-(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "i i" 'org-insert-item)
+  (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
